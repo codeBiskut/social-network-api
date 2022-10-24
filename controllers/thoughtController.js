@@ -1,5 +1,15 @@
 const { ObjectId } = require('mongoose').Types;
-const { Student, Course } = require('../models');
+const { User, Thought } = require('../models');
+
+// get all thoughts
+// get one thought by id
+// post a thought (push thought id to user's thought array)
+// put a thought by id
+// delete a thought by id
+
+// api/thoughts/:id/reactions
+// post a reaction to a thought (add to thought's reaction array)
+// delete a reaction to a thought by reaction's id (remove from thought's reaction array)
 
 // Aggregate function to get the number of students overall
 const headCount = async () =>
