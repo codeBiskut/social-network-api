@@ -11,21 +11,22 @@ const router = require('express').Router();
 // delete a reaction to a thought by reaction's id (remove from thought's reaction array)
 
 const {
-  getCourses,
-  getSingleCourse,
-  createCourse,
-  updateCourse,
-  deleteCourse,
-} = require('../../controllers/courseController.js');
+  getThoughts,
+  getSingleThought,
+  createThought,
+  updateThought,
+  deleteThought,
+  addReaction,
+  removeReaction,
+} = require('../../controllers/thoughtController.js');
 
-// /api/courses
-router.route('/').get(getCourses).post(createCourse);
+// /api/thought
+router.route('/').get(getThoughts).post(createThought);
 
-// /api/courses/:courseId
-router
-  .route('/:courseId')
-  .get(getSingleCourse)
-  .put(updateCourse)
-  .delete(deleteCourse);
+// /api/thought/:thoughtId
+router.route('/:thoughtId').get(getSingleThought).update(updateThought).delete(deleteThought);
+
+// /api/thoughtt/:thoughtId/reactions
+router.route('/:thoughtId/reactions').post(addReaction).delete(removeReaction)
 
 module.exports = router;
