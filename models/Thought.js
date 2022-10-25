@@ -1,5 +1,34 @@
 const { Schema, model, Types } = require('mongoose');
 
+const reactionSchema = new Schema(
+  {
+    reactionId:{
+      type:Schema.Types.ObjectId,
+      default: () => new Types.ObjectId()
+    },
+    reactionBody:{  
+      type: String,
+      required: 'Reaction must have content',
+      maxLength: 280
+    },
+    username:{
+      type: String,
+      required: 'Reaction must originate from someone'
+    },
+    createdAt:{
+      type: Date,
+      default: Date.now
+      // get the date and format it
+      // Use a getter method to format the timestamp on query
+    }
+  },
+  {
+    toJSON: {
+      getters: true
+    }
+  }
+)
+
 // Schema to create thought model
 const thoughtSchema = new Schema(
   {
@@ -30,34 +59,7 @@ const thoughtSchema = new Schema(
   }
 )
 
-const reactionSchema = new Schema(
-  {
-    reactionId:{
-      type:Schema.Types.ObjectId,
-      default: () => new Types.ObjectId()
-    },
-    reactionBody:{
-      type: String,
-      required: 'Reaction must have content',
-      maxLength: 280
-    },
-    username:{
-      type: String,
-      required: 'Reaction must originate from someone'
-    },
-    createdAt:{
-      type: Date,
-      default: Date.now
-      // get the date and format it
-      // Use a getter method to format the timestamp on query
-    }
-  },
-  {
-    toJSON: {
-      getters: true
-    }
-  }
-)
+
 
 // virtual for reaction count
 thoughtSchema.virtual('reactionCount').get(function(){

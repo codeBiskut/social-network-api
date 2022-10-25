@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 
 // Schema to create a new user model
 const userSchema = new Schema(
@@ -10,12 +10,12 @@ const userSchema = new Schema(
       trim: true
     },
     email: {
-      type: string,
+      type: String,
       required: 'Valid email address is required',
       unique: true,
-      validate: {
-        // validate the email somehow
-      }
+      // validate: {
+      //   validate the email somehow
+      // }
     },
     thoughts: [{
       type: Schema.Types.ObjectId,
